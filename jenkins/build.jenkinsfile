@@ -18,6 +18,7 @@ pipeline {
        stages {   
          stage('One') {
            steps {
+             sh 'echo "hello"'
              //checkout scm: [$class: 'GitSCM', branches: [[name: "${GIT_COMMIT}"]]]
              //sh 'git rev-parse HEAD'
              //sh 'cat jenkins/info.txt'
@@ -25,6 +26,7 @@ pipeline {
          }
          stage('Two') {
            steps {
+             sh 'echo "hello"'
             //input 'Proceed?'
             //checkout scm: [$class: 'GitSCM', branches: [[name: "${GIT_COMMIT}"]]]
             //sh 'git rev-parse HEAD'
