@@ -2,7 +2,7 @@
 
 pipeline {
   agent none
-  options { skipDefaultCheckout() }
+  options { checkoutToSubdirectory('source')() }
   stages {
     stage('Build and Test') {
       matrix {
