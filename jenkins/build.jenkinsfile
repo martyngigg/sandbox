@@ -3,6 +3,9 @@
 pipeline {
   agent none
   options { checkoutToSubdirectory('source') }
+  environment {
+    WIN_BASH = "C:\\Program Files\\git\\bin\\bash.exe"
+  }
   stages {
     stage('Build and Test') {
       matrix {
@@ -12,25 +15,15 @@ pipeline {
        axes {
          axis {
            name 'PLATFORM'
-           values 'linux-64'
+           values 'win-64'
          }
        }
        stages {   
          stage('One') {
            steps {
-             sh 'printenv'
-             //checkout scm: [$class: 'GitSCM', branches: [[name: "${GIT_COMMIT}"]]]
-             //sh 'git rev-parse HEAD'
-             //sh 'cat jenkins/info.txt'
-           }
-         }
-         stage('Two') {
-           steps {
-            sh 'printenv'
-            //input 'Proceed?'
-            //checkout scm: [$class: 'GitSCM', branches: [[name: "${GIT_COMMIT}"]]]
-            //sh 'git rev-parse HEAD'
-            //sh 'cat jenkins/info.txt'
+             versionscript_path="source/jenkins/generate-version-number"
+             git_tag=bat(script: "\"${WIN_BASH}\" -ex -c \"${versionscript_path}\"", returnStdout: true).trim()
+             println("Git tag: {git_tag}")
            }
          }
        }
