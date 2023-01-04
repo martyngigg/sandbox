@@ -21,13 +21,18 @@ pipeline {
        stages {   
          stage('One') {
            steps {
-             versionscript_path="source/jenkins/generate-version-number"
-             git_tag=bat(script: "\"${WIN_BASH}\" -ex -c \"${versionscript_path}\"", returnStdout: true).trim()
-             println("Git tag: {git_tag}")
+             generate_git_tag()
            }
          }
        }
       }
     }
   }
+}
+
+def generate_git_tag() {
+  versionscript_path="source/jenkins/generate-version-number"
+  git_tag=bat(script: "\"${WIN_BASH}\" -ex -c \"${versionscript_path}\"", returnStdout: true).trim()
+  println("Git tag: {git_tag}")
+  return git_tag
 }
