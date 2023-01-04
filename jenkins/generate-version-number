@@ -9,15 +9,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd ${SCRIPT_DIR}
 
 LATEST_TAG=$(git describe --tags --abbrev=0)
-VERSION_START=""
-
-if [[ $LATEST_TAG =~ v[0-9]+.[0-9]+. ]]; then
-    VERSION_START=${BASH_REMATCH}
-else
-    echo "Failed to find suitable git tag to generate version number."
-    exit 1
-fi
-
+VERSION_START="v6.5."
 LATEST_GIT_SHA_DATE=$(command git log -1 --format=format:%ci)
 
 YEAR=${LATEST_GIT_SHA_DATE:0:4}
