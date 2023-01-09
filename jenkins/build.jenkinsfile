@@ -32,7 +32,7 @@ pipeline {
 
 def generate_git_tag() {
   versionscript_path="source/jenkins/generate-version-number"
-  git_tag=bat(script: "\"${WIN_BASH}\" -ex -c \"${versionscript_path}\"", returnStdout: true).trim()
+  git_tag = powershell(script: "\"${WIN_BASH}\" -ex -c \"${versionscript_path}\"", returnStdout: true).trim()
   println("Git tag: ${git_tag}")
   return git_tag
 }
