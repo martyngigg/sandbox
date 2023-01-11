@@ -21,8 +21,8 @@ pipeline {
        stages {   
          stage('One') {
            steps {
-            sh "${CISCRIPT_DIR}/test-buildscript "  +\
-              'arg1 arg2'
+            sh 'source/jenkins/test-buildscript\
+              arg1 arg2'
            }
          }
        }
