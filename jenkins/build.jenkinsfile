@@ -1,5 +1,5 @@
 
-
+CISCRIPT_DIR = "source/jenkins"
 pipeline {
   agent none
   options { checkoutToSubdirectory('source') }
@@ -15,13 +15,14 @@ pipeline {
        axes {
          axis {
            name 'PLATFORM'
-           values 'win-64'
+           values 'linux-64'
          }
        }
        stages {   
          stage('One') {
            steps {
-             generate_git_tag()
+            sh "${CISCRIPT_DIR}/test-buildscript"  +\
+              'arg1 arg2'
            }
          }
        }
