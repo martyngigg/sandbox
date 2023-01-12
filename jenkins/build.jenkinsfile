@@ -15,14 +15,13 @@ pipeline {
        axes {
          axis {
            name 'PLATFORM'
-           values 'linux-64'
+           values 'linux-64', 'win-64'
          }
        }
        stages {   
          stage('One') {
            steps {
-            sh "${CISCRIPT_DIR}/test-buildscript " +\
-              'arg1 arg2 ' + "${generate_git_tag()}"
+            echo "${generate_git_tag()}"
            }
          }
        }
@@ -31,12 +30,11 @@ pipeline {
   }
 }
 
-def generate_git_tag(platfor="linux") {
+def generate_git_tag() {
   //versionscript_path="source/jenkins/generate-version-number"
   //git_tag = bat(script: "@\"${WIN_BASH}\" -ex -c \"${versionscript_path}\"", returnStdout: true).trim()
-  if(platfor.startsWith("linux"))
-    return "LINUX"
+  if(isUnix())
+    return "Tag on LINUX"
   else
-    return "WINDOWS"
-  //return git_tag
+    return "Tag on WINDOWS"
 }
