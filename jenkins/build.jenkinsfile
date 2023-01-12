@@ -22,7 +22,7 @@ pipeline {
          stage('One') {
            steps {
             sh "${CISCRIPT_DIR}/test-buildscript " +\
-              'arg1 arg2 ' + "${generate_git_tag()}"
+              'arg1 arg2 ' + "${generate_git_tag(platform)}"
            }
          }
        }
