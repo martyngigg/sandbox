@@ -22,7 +22,7 @@ pipeline {
          stage('One') {
            steps {
             sh "${CISCRIPT_DIR}/test-buildscript " +\
-              'arg1 arg2' + "${generate_git_tag()}"
+              'arg1 arg2 ' + "${generate_git_tag()}"
            }
          }
        }
@@ -34,6 +34,9 @@ pipeline {
 def generate_git_tag() {
   //versionscript_path="source/jenkins/generate-version-number"
   //git_tag = bat(script: "@\"${WIN_BASH}\" -ex -c \"${versionscript_path}\"", returnStdout: true).trim()
-  println("Running on ${platform}")
+  if(platform.startsWith("linux"))
+    return "LINUX"
+  else
+    return "WINDOWS"
   //return git_tag
 }
