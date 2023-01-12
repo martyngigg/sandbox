@@ -3,5 +3,3 @@
 echo Testing pass-through args
 echo "$@"
 echo
-echo Content of info.txt
-cat jenkins/info.txt
