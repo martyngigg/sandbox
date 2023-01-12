@@ -31,7 +31,7 @@ pipeline {
   }
 }
 
-def generate_git_tag() {
+def generate_git_tag(platfor) {
   //versionscript_path="source/jenkins/generate-version-number"
   //git_tag = bat(script: "@\"${WIN_BASH}\" -ex -c \"${versionscript_path}\"", returnStdout: true).trim()
   if(platfor.startsWith("linux"))
