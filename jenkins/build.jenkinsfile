@@ -34,7 +34,7 @@ pipeline {
 def generate_git_tag() {
   //versionscript_path="source/jenkins/generate-version-number"
   //git_tag = bat(script: "@\"${WIN_BASH}\" -ex -c \"${versionscript_path}\"", returnStdout: true).trim()
-  if(platform.startsWith("linux"))
+  if(platfor.startsWith("linux"))
     return "LINUX"
   else
     return "WINDOWS"
